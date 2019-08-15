@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+  <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+    <param name="threshold" value="INFO"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{MM/dd/yy HH:mm:ss} %5p %C.%M(%L) - %m%n"/>
+    </layout>
+  </appender>
+  <appender name="infoFileAppender" class="org.apache.log4j.FileAppender">
+    <param name="file" value="info.log"/>
+    <param name="append" value="false"/>
+    <param name="threshold" value="INFO"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{MM/dd/yy HH:mm:ss} %5p %C.%M(%L) - %m%n"/>
+    </layout>
+  </appender>
+  <appender name="debugFileAppender" class="org.apache.log4j.FileAppender">
+    <param name="file" value="debug.log"/>
+    <param name="append" value="false"/>
+    <param name="threshold" value="DEBUG"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{MM/dd/yy HH:mm:ss} %5p %C.%M(%L) - %m%n"/>
+    </layout>
+  </appender>
+
+  <category name="org">
+    <priority value="INFO"/>
+  </category>
+  <category name="net">
+    <priority value="INFO"/>
+  </category>
+  <category name="com">
+    <priority value="INFO"/>
+  </category>
+
+  <category name="org.hibernate">
+    <priority value="INFO"/>
+    <!-- just startup messages -->
+  </category>
+
+  <!--
+   <category name="org.hibernate.SQL">
+     <priority value="DEBUG"/>
+   </category> -->
+  <!--JDBC bind parameter runtime args
+  <category name="org.hibernate.type">
+    <priority value="TRACE"/>
+  </category> -->
+  <category name="org.hibernate.jpa.internal.util.LogHelper">
+    <priority value="DEBUG"/>
+    <!--shows list of managed classes-->
+  </category>
+  <category name="org.hibernate.tool.hbm2ddl.SchemaExport">
+    <priority value="DEBUG"/>
+  </category>
+
+  <category name="org.springframework">
+    <priority value="INFO"/>
+  </category>
+  <!--
+  <category name="org.springframework.beans.factory.support">
+    <priority value="DEBUG"/>
+  </category>
+  <category name="org.springframework.context.support">
+    <priority value="DEBUG"/>
+  </category>
+  -->
+  <!--
+  <category name="org.springframework.orm.jpa">
+    <priority value="DEBUG"/>
+  </category>
+  <category name="org.springframework.transaction">
+    <priority value="DEBUG"/>
+  </category>
+  <category name="org.springframework.transaction.interceptor">
+    <priority value="DEBUG"/>
+  </category> -->
+
+  <category name="org.apache.http.headers">
+    <priority value="DEBUG"/>
+  </category>
+  <category name="org.apache.http.wire">
+    <priority value="DEBUG"/>
+  </category>
+  <category name="org.apache.http">
+    <priority value="DEBUG"/>
+  </category>
+
+  <!-- Amazon logRequestId ("x-amzn-RequestId") at level INFO can be a tad verbose -->
+  <category name="com.amazonaws.http.AmazonHttpClient">
+    <priority value="WARN"/>
+  </category>
+
+  <category name="bluegreen.manager">
+    <priority value="DEBUG"/>
+  </category>
+
+  <root>
+    <level value="INFO"/>
+    <appender-ref ref="consoleAppender"/>
+    <appender-ref ref="infoFileAppender"/>
+    <appender-ref ref="debugFileAppender"/>
+  </root>
+</log4j:configuration>
